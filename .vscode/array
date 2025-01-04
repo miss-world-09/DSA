@@ -1,0 +1,32 @@
+// QUES1:- Given an array of integers arr, return true if the number of occurrences of each value in the array is unique or false otherwise.
+
+ class Solution {
+public:
+    bool uniqueOccurrences(vector<int>& arr) {
+        // The arr array is sorted in ascending order.
+        sort(arr.begin(), arr.end());
+        vector<int> v;
+        // A vector<int> v is used to store the counts (frequencies) of each unique number in the array.
+
+        for (int i = 0; i < arr.size(); i++) {
+            int count = 1;
+            while (i + 1 < arr.size() && arr[i] == arr[i + 1]) {
+                count++;
+                i++;
+            }
+            v.push_back(count);
+        }
+// If two consecutive frequencies are the same, return false
+        sort(v.begin(), v.end());
+        for (int i = 0; i < v.size() - 1; i++) {
+            if (v[i] == v[i + 1]) {
+                return false;
+            }
+        }
+        // If no duplicate frequencies are found, the function returns true.
+
+        return true;
+    }
+};
+
+
